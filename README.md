@@ -94,7 +94,8 @@
 * Interfaces are intentionally ignored to keep the project simple.
 
 ### Compliance
-* The git clone option while building the docker image is failing at step 9. Hence, tested it after download the repository as a zip archive. Here are the snippets
+* While building the Docker image using ```git clone``` to download the source code, the script fails at Step 9.
+* Hence, built the Docker image using ```zip``` option(Downloaded the .zip from GitHub and passed the local file URI). Here are the console log snippets captured during the build and smoke test procees:
 
 ````
 sivaa-MAC:tests sivaa$ bash build_docker_image.sh dev-test-bus-route-challenge-master.zip 
