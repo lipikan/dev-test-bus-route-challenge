@@ -92,3 +92,46 @@
 * Logs are printed on the console and not intentionally redirected it to file.
 * Exception and validation messages can be enabled for translations.
 * Interfaces are intentionally ignored to keep the project simple.
+
+### Compliance
+* The git clone option while building the docker image is failing at step 9. Hence, tested it after download the repository as a zip archive. Here are the snippets
+
+````
+sivaa-MAC:tests sivaa$ bash build_docker_image.sh dev-test-bus-route-challenge-master.zip 
+	zip mode
+	Sending build context to Docker daemon 2.403 MB
+	Step 1 : FROM ubuntu:16.04
+	 ---> e4415b714b62
+	Step 2 : RUN apt-get update && apt-get install -y     openjdk-8-jdk     git     maven     gradle     unzip  && rm -rf /var/lib/apt/lists/*
+	 ---> Running in 081f5888e00f
+	Get:1 http://archive.ubuntu.com/ubuntu xenial InRelease [247 kB]
+	Get:2 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [95.7 kB]
+
+
+	 <REMOVED>
+
+
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 05:39 min
+	[INFO] Finished at: 2016-11-20T15:37:10+00:00
+	[INFO] Final Memory: 33M/197M
+	[INFO] ------------------------------------------------------------------------
+	/data/test
+	 ---> e3214ff099d4
+	Removing intermediate container 4bd7efc25427
+	Step 13 : CMD bash /scripts/run.sh
+	 ---> Running in 69d7f78c122d
+	 ---> 6089f8dda3ed
+	Removing intermediate container 69d7f78c122d
+	Successfully built 6089f8dda3ed
+	sivaa-MAC:tests sivaa$ docker images
+	REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+	dev-test            latest              6089f8dda3ed        32 seconds ago      773.1 MB
+	ubuntu              16.04               e4415b714b62        3 days ago          128.1 MB
+	sivaa-MAC:tests sivaa$ bash run_test_docker.sh
+	TEST PASSED!
+	sivaa-MAC:tests sivaa$ 
+
+````
